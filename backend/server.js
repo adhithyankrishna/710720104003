@@ -1,8 +1,10 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors");
 
 const app = express();
 const PORT = 3030;
+app.use(cors());
 
 var access = "";
 
@@ -67,7 +69,7 @@ app.get("/trainsd", (req, res) => {
           departureTime.Minutes -
           (currentTime.getHours() * 60 + currentTime.getMinutes());
 
-        return timeDifference > 30; // Filter out trains departing in the next 30 minutes
+        return timeDifference > 30;
       });
 
       // Sort the filtered trains based on price, tickets, and departure time

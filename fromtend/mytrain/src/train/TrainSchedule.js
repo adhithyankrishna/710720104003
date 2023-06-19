@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "../App.css"; // Import your custom CSS file
 
 const TrainSchedule = () => {
   const [trainSchedules, setTrainSchedules] = useState([]);
@@ -25,10 +26,10 @@ const TrainSchedule = () => {
   };
 
   return (
-    <div>
+    <div className="train-schedule">
       <h2>Train Schedules</h2>
       {trainSchedules.map((train) => (
-        <div key={train.trainNumber}>
+        <div key={train.trainNumber} className="train-card">
           <h3>{train.trainName}</h3>
           <p>Train Number: {train.trainNumber}</p>
           <p>Departure Time: {formatDepartureTime(train.departureTime)}</p>
