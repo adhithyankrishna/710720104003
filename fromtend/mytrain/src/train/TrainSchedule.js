@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../App.css"; // Import your custom CSS file
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const TrainSchedule = () => {
   const [trainSchedules, setTrainSchedules] = useState([]);
@@ -8,7 +8,6 @@ const TrainSchedule = () => {
   useEffect(() => {
     const fetchTrainSchedules = async () => {
       try {
-        const auth = await axios.get("http://localhost:3030/auth");
         const response = await axios.get("http://localhost:3030/trainsd");
         const { data } = response;
         setTrainSchedules(data);
@@ -26,17 +25,27 @@ const TrainSchedule = () => {
   };
 
   return (
-    <div className="train-schedule">
-      <h2>Train Schedules</h2>
+    <div className="container">
+      <center>
+        <h2>Train Schedules</h2>
+      </center>
       {trainSchedules.map((train) => (
-        <div key={train.trainNumber} className="train-card">
-          <h3>{train.trainName}</h3>
-          <p>Train Number: {train.trainNumber}</p>
-          <p>Departure Time: {formatDepartureTime(train.departureTime)}</p>
-          <p>Seats Available (Sleeper): {train.seatsAvailable.sleeper}</p>
-          <p>Seats Available (AC): {train.seatsAvailable.AC}</p>
-          <p>Price (Sleeper): {train.price.sleeper}</p>
-          <p>Price (AC): {train.price.AC}</p>
+        <div key={train.trainNumber} className="card my-3">
+          <div className="card-body">
+            <h3 className="card-title">{train.trainName}</h3>
+            <p className="card-text">Train Number: {train.trainNumber}</p>
+            <p className="card-text">
+              Departure Time: {formatDepartureTime(train.departureTime)}
+            </p>
+            <p className="card-text">
+              Seats Available (Sleeper): {train.seatsAvailable.sleeper}
+            </p>
+            <p className="card-text">
+              Seats Available (AC): {train.seatsAvailable.AC}
+            </p>
+            <p className="card-text">Price (Sleeper): {train.price.sleeper}</p>
+            <p className="card-text">Price (AC): {train.price.AC}</p>
+          </div>
         </div>
       ))}
     </div>
