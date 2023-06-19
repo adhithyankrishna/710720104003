@@ -1,5 +1,5 @@
 import React from "react";
-import TrainSchedule from "//TrainSchedule";
+import TrainSchedule from "./train/TrainSchedule";
 
 const App = () => {
   return (

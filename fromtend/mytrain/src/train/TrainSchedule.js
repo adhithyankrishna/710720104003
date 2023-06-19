@@ -12,12 +12,17 @@ const TrainSchedule = () => {
         const { data } = response;
         setTrainSchedules(data);
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Error:", error.message);
       }
     };
 
     fetchTrainSchedules();
   }, []);
+
+  const formatDepartureTime = (time) => {
+    const { Hours, Minutes, Seconds } = time;
+    return `${Hours}:${Minutes}:${Seconds}`;
+  };
 
   return (
     <div>
@@ -26,7 +31,7 @@ const TrainSchedule = () => {
         <div key={train.trainNumber}>
           <h3>{train.trainName}</h3>
           <p>Train Number: {train.trainNumber}</p>
-          <p>Departure Time: {train.departureTime}</p>
+          <p>Departure Time: {formatDepartureTime(train.departureTime)}</p>
           <p>Seats Available (Sleeper): {train.seatsAvailable.sleeper}</p>
           <p>Seats Available (AC): {train.seatsAvailable.AC}</p>
           <p>Price (Sleeper): {train.price.sleeper}</p>
